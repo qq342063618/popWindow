@@ -8,13 +8,13 @@ var _pop_win = {
 	},
 	_init : function(){
 		$("body").on("click","*[data-pop-param]",function(){//data-pop-param参数设置
-			_pop_win._pop($(this).attr("data-pop-param"));
+			_pop_win._http_pop($(this).attr("data-pop-param"));
 		})
 		$("body").on("click", "*[data-pop-action=\"close\"]", function(){//data-pop-action=close关闭浮窗
 			$("*[data-pop-id=\"container\"]").remove();
 		})		
 	},
-	_pop : function(data){//{宽，高，路径} 
+	_http_pop : function(data){//{宽，高，路径} 
 		if(data != null && data != ""){
 			data = data.split(",");
 			if(data.length == 3){
@@ -39,6 +39,29 @@ var _pop_win = {
 					$(myFrame).css({"width":"100%","height":"100%"});
 					$(main).append(myFrame);
 				}
+				
+				$("body").append(container);
+			}
+		}
+	},
+	_html_pop : function(data, htmlStr){//{宽，高},html代码字符串 
+		if(data != null && data != "" && htmlStr != ""){
+			data = data.split(",");
+			if(data.length == 2){
+				var container = $("<div data-pop-id=\"container\"></div>");
+				$(container).css({"width":"100%","height":"100%","position":"fixed","top":"0","left":"0","background-color":"#3a3636a6","display":"flex","justify-content":"center","align-items":"center","z-index":"999"});
+				
+				var main = $("<div></div>");
+				$(main).css({"width":data[0],"height":data[1],"position":"relative","background-color":"white"});
+				$(container).append(main);
+								
+				var button = $("<div data-pop-action=\"close\">X</div>");
+				$(button).css({"cursor":"pointer","width":"2rem","height":"2rem","display":"flex","align-items":"center","justify-content":"center","font-size":"1rem","color":"#FF5722","background-color":"white","position":"absolute","right":"-1rem","top":"-1rem","border-radius":"50%","border":"0.3rem solid #FF5722"});
+				$(main).append(button);		
+					
+				var myHtml = $(htmlStr);
+				$(myHtml).css({"width":"100%","height":"100%"});
+				$(main).append(myHtml);
 				
 				$("body").append(container);
 			}
