@@ -7,7 +7,7 @@ var _pop_win = {
 		document.getElementsByTagName("body")[0].appendChild(script);	
 	},
 	_init : function(){
-		$("*[data-pop-param]").click(function(){//data-pop-param参数设置
+		$("body").on("click","*[data-pop-param]",function(){//data-pop-param参数设置
 			_pop_win._pop($(this).attr("data-pop-param"));
 		})
 		$("body").on("click", "*[data-pop-action=\"close\"]", function(){//data-pop-action=close关闭浮窗
@@ -49,5 +49,6 @@ var _pop_win = {
 /*判断是否引入jquery,然后执行初始化方法*/
 if(!window.jQuery) {
 	_pop_win.loadScript("https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js", _pop_win._init);	
+}else{
+	_pop_win._init();
 }
-
