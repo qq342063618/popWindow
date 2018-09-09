@@ -14,12 +14,15 @@ var _pop_win = {
 			$("*[data-pop-id=\"container\"]").remove();
 		})		
 	},
+	_pop_close : function(){//手动调用js关闭浮窗
+		$("*[data-pop-id=\"container\"]").remove();
+	},
 	_http_pop : function(data){//{宽，高，路径} 
 		if(data != null && data != ""){
 			data = data.split(",");
 			if(data.length == 3){
 				var container = $("<div data-pop-id=\"container\"></div>");
-				$(container).css({"width":"100%","height":"100%","position":"fixed","top":"0","left":"0","background-color":"#3a3636a6","display":"flex","justify-content":"center","align-items":"center","z-index":"999"});
+				$(container).css({"width":"100%","height":"100%","position":"fixed","top":"0","left":"0","background-color":"#0a0909a6","display":"flex","justify-content":"center","align-items":"center","z-index":"999"});
 				
 				var main = $("<div></div>");
 				$(main).css({"width":data[0],"height":data[1],"position":"relative"});
@@ -35,7 +38,7 @@ var _pop_win = {
 					$(img).css({"width":"100%","height":"100%"});
 					$(main).append(img);				
 				}else{
-					var myFrame = $("<iframe src=\"" + data[2] + "\"></iframe>");
+					var myFrame = $("<iframe frameborder=\"0\" src=\"" + data[2] + "\"></iframe>");
 					$(myFrame).css({"width":"100%","height":"100%"});
 					$(main).append(myFrame);
 				}
@@ -44,12 +47,12 @@ var _pop_win = {
 			}
 		}
 	},
-	_html_pop : function(data, htmlStr){//{宽，高},html代码字符串 
-		if(data != null && data != "" && htmlStr != ""){
+	_html_pop : function(data, str){//{宽，高},html代码字符串 
+		if(data != null && data != "" && str != ""){
 			data = data.split(",");
 			if(data.length == 2){
 				var container = $("<div data-pop-id=\"container\"></div>");
-				$(container).css({"width":"100%","height":"100%","position":"fixed","top":"0","left":"0","background-color":"#3a3636a6","display":"flex","justify-content":"center","align-items":"center","z-index":"999"});
+				$(container).css({"width":"100%","height":"100%","position":"fixed","top":"0","left":"0","background-color":"#0a0909a6","display":"flex","justify-content":"center","align-items":"center","z-index":"999"});
 				
 				var main = $("<div></div>");
 				$(main).css({"width":data[0],"height":data[1],"position":"relative","background-color":"white"});
@@ -59,11 +62,18 @@ var _pop_win = {
 				$(button).css({"cursor":"pointer","width":"2rem","height":"2rem","display":"flex","align-items":"center","justify-content":"center","font-size":"1rem","color":"#FF5722","background-color":"white","position":"absolute","right":"-1rem","top":"-1rem","border-radius":"50%","border":"0.3rem solid #FF5722"});
 				$(main).append(button);		
 					
-				var myHtml = $(htmlStr);
-				$(myHtml).css({"width":"100%","height":"100%"});
-				$(main).append(myHtml);
+				if(str.indexOf("http") == 0){					
+					var myHtml = $(str);
+					$(myHtml).css({"width":"100%","height":"100%"});
+					$(main).append(myHtml);//字符串拼接html
+				}else {
+					var myHtml = $("#" + str).clone();//从页面中复制指定id内的html
+					myHtml.css("display","block");//包裹html的元素应添加frame样式
+					$(main).append(myHtml.html());
+				}
 				
 				$("body").append(container);
+				return container;//返回该对象便于外部js调用
 			}
 		}
 	}
