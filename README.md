@@ -1,12 +1,10 @@
 # popWindow
-pop a window on your website with the popWindow.js
+页面弹窗插件popWindow.js
 
-# how to use
-Useage1.<br/>
-Add a attribute in your html element,for example:<br/>
-  &lt;h1 data-pop-param="80%,50%,http://example.com" &gt;This is Demo&&lt;/h1&gt; <br/>
-In this Example,"80%" is width,"50%" is height,and "http://example.com" is url.<br/>
-<br/>
-Useage2.<br/>
-Call function of variable("_pop_win")  in Javascript,for example:<br/>
-  _pop_win._html_pop("50%,50%", "&lt;h1&gt;Demo&lt;/h1&gt;");
+#用法
+1.属性调用
+  在目标元素添加属性data-pop-param,值格式为{宽,高,http路径},例如<h1 data-pop-param="50%,200px,http://example.com">Example</h1>
+2.js调用
+  全局对象_pop_win有2个方法可供调用
+  _pop_close():关闭页面中的弹窗,例_pop_win._pop_close();
+  _html_pop(data, str):其中data为{宽,高}字符串,str为html字符串或者页面元素的id,例_pop_win._html_pop("1px,1px","<i></i>")，_pop_win._html_pop("1px,1px","id")
