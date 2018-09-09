@@ -62,7 +62,7 @@ var _pop_win = {
 				$(button).css({"cursor":"pointer","width":"2rem","height":"2rem","display":"flex","align-items":"center","justify-content":"center","font-size":"1rem","color":"#FF5722","background-color":"white","position":"absolute","right":"-1rem","top":"-1rem","border-radius":"50%","border":"0.3rem solid #FF5722"});
 				$(main).append(button);		
 					
-				if(str.indexOf("http") == 0){					
+				if(str.indexOf("<") == 0){					
 					var myHtml = $(str);
 					$(myHtml).css({"width":"100%","height":"100%"});
 					$(main).append(myHtml);//字符串拼接html
