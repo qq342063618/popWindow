@@ -29,7 +29,7 @@ var _pop_win = {
 				$(container).append(main);
 								
 				var button = $("<div data-pop-action=\"close\">X</div>");
-				$(button).css({"cursor":"pointer","width":"2rem","height":"2rem","display":"flex","align-items":"center","justify-content":"center","font-size":"1rem","color":"#FF5722","background-color":"white","position":"absolute","right":"-1rem","top":"-1rem","border-radius":"50%","border":"0.3rem solid #FF5722"});
+				$(button).css({"cursor":"pointer","width":"20px","height":"20px","display":"flex","align-items":"center","justify-content":"center","font-size":"20px","color":"#FF5722","background-color":"white","position":"absolute","right":"-15px","top":"-15px","border-radius":"50%","border":"5px solid #FF5722"});
 				$(main).append(button);		
 					
 				var suffix = data[2].substr(data[2].lastIndexOf(".") ,4);	
@@ -59,7 +59,7 @@ var _pop_win = {
 				$(container).append(main);
 								
 				var button = $("<div data-pop-action=\"close\">X</div>");
-				$(button).css({"cursor":"pointer","width":"2rem","height":"2rem","display":"flex","align-items":"center","justify-content":"center","font-size":"1rem","color":"#FF5722","background-color":"white","position":"absolute","right":"-1rem","top":"-1rem","border-radius":"50%","border":"0.3rem solid #FF5722"});
+				$(button).css({"cursor":"pointer","width":"20px","height":"20px","display":"flex","align-items":"center","justify-content":"center","font-size":"20px","color":"#FF5722","background-color":"white","position":"absolute","right":"-15px","top":"-15px","border-radius":"50%","border":"5px solid #FF5722"});
 				$(main).append(button);		
 					
 				if(str.indexOf("<") == 0){					
